@@ -34,13 +34,13 @@
         "learning",
         "color"
     ],
-    "author": "Jason Stallings",
+    "author": "Lumia Stream",
     "license": "MIT",
     "gypfile": true,
     "bugs": {
-        "url": "https://github.com/octalmage/robotjs/issues"
+        "url": "https://github.com/lumiastream/robotjs/issues"
     },
-    "homepage": "https://github.com/octalmage/robotjs",
+    "homepage": "https://github.com/lumiastream/robotjs",
     "dependencies": {
         "nan": "^2.15.0",
         "prebuild-install": "^7.0.1"
