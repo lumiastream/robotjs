@@ -1,6 +1,6 @@
 {
     "name": "@lumiastream/robotjs",
-    "version": "0.6.1",
+    "version": "0.6.1-alpha.1",
     "description": "Node.js Desktop Automation.",
     "main": "index.js",
     "typings": "index.d.ts",
@@ -42,7 +42,7 @@
     },
     "homepage": "https://github.com/octalmage/robotjs",
     "dependencies": {
-        "nan": "^2.15.2",
+        "nan": "^2.15.0",
         "prebuild-install": "^7.0.1"
     },
     "devDependencies": {
