@@ -9,29 +9,40 @@
 
 /* Some generic, cross-platform types. */
 
-struct _MMPoint {
+struct _MMPoint
+{
 	size_t x;
 	size_t y;
 };
 
 typedef struct _MMPoint MMPoint;
 
-
-struct _MMSignedPoint {
+struct _MMSignedPoint
+{
 	int32_t x;
 	int32_t y;
 };
 
 typedef struct _MMSignedPoint MMSignedPoint;
 
-struct _MMSize {
+struct _MMSize
+{
 	size_t width;
 	size_t height;
 };
 
 typedef struct _MMSize MMSize;
 
-struct _MMRect {
+struct _MMSignedSize
+{
+	int32_t width;
+	int32_t height;
+};
+
+typedef struct _MMSignedSize MMSignedSize;
+
+struct _MMRect
+{
 	MMPoint origin;
 	MMSize size;
 };
@@ -62,6 +73,14 @@ H_INLINE MMSize MMSizeMake(size_t width, size_t height)
 	return size;
 }
 
+H_INLINE MMSignedSize MMSignedSizeMake(int32_t width, int32_t height)
+{
+	MMSignedSize size;
+	size.width = width;
+	size.height = height;
+	return size;
+}
+
 H_INLINE MMRect MMRectMake(size_t x, size_t y, size_t width, size_t height)
 {
 	MMRect rect;
@@ -78,11 +97,12 @@ H_INLINE MMRect MMRectMake(size_t x, size_t y, size_t width, size_t height)
 #define MMPointFromCGPoint(p) MMPointMake((size_t)(p).x, (size_t)(p).y)
 
 #define CGPointFromMMSignedPoint(p) CGPointMake((CGFloat)(p).x, (CGFloat)(p).y)
-#define MMSignedPointFromCGPoint(p) MMPointMake((int32_t)(p).x, (int32_t)(p).y)
+#define MMSignedPointFromCGPoint(p) MMSignedPointMake((int32_t)(p).x, (int32_t)(p).y)
 
 #elif defined(IS_WINDOWS)
 
 #define MMPointFromPOINT(p) MMPointMake((size_t)p.x, (size_t)p.y)
+#define MMSignedPointFromPOINT(p) MMSignedPointMake((int32_t)p.x, (int32_t)p.y)
 
 #endif
 
