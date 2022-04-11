@@ -1,66 +1,76 @@
 {
-  'targets': [{
-    'target_name': 'robotjs',
-    'include_dirs': [
-        "<!(node -e \"require('nan')\")"
-    ],
-    
-    'cflags': [
-      '-Wall',
-      '-Wparentheses',
-      '-Winline',
-      '-Wbad-function-cast',
-      '-Wdisabled-optimization'
-    ],
-    
-    'conditions': [
-      ['OS == "mac"', {
-        'include_dirs': [
-          'System/Library/Frameworks/CoreFoundation.Framework/Headers',
-          'System/Library/Frameworks/Carbon.Framework/Headers',
-          'System/Library/Frameworks/ApplicationServices.framework/Headers',
-          'System/Library/Frameworks/OpenGL.framework/Headers',
-        ],
-        'link_settings': {
-          'libraries': [
-            '-framework Carbon',
-            '-framework CoreFoundation',
-            '-framework ApplicationServices',
-            '-framework OpenGL'
-          ]
-        }
-      }],
-      
-      ['OS == "linux"', {
-        'link_settings': {
-          'libraries': [
-            '-lpng',
-            '-lz',
-            '-lX11',
-            '-lXtst'
-          ]
+    'targets': [{
+        'target_name': 'robotjs',
+        'cflags!': ['-fno-exceptions'],
+        'cflags_cc!': ['-fno-exceptions'],
+        'xcode_settings': {'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
+                           'CLANG_CXX_LIBRARY': 'libc++',
+                           'MACOSX_DEPLOYMENT_TARGET': '10.7',
+                           },
+        'msvs_settings': {
+            'VCCLCompilerTool': {'ExceptionHandling': 1},
         },
-        
-        'sources': [
-          'src/xdisplay.c'
-        ]
-      }],
+        'include_dirs': [
+            '<!(node -p "require(\'node-addon-api\').include_dir")',
+        ],
 
-      ["OS=='win'", {
-        'defines': ['IS_WINDOWS']
-      }]
-    ],
-    
-    'sources': [
-      'src/robotjs.cc',
-      'src/deadbeef_rand.c',
-      'src/mouse.c',
-      'src/keypress.c',
-      'src/keycode.c',
-      'src/screen.c',
-      'src/screengrab.c',
-      'src/snprintf.c',
-      'src/MMBitmap.c'
-    ]
-  }]
+        'cflags': [
+            '-Wall',
+            '-Wparentheses',
+            '-Winline',
+            '-Wbad-function-cast',
+            '-Wdisabled-optimization'
+        ],
+
+        'conditions': [
+            ['OS == "mac"', {
+                'include_dirs': [
+                    '<!(node -p "require(\'node-addon-api\').include_dir")',
+                    'System/Library/Frameworks/CoreFoundation.Framework/Headers',
+                    'System/Library/Frameworks/Carbon.Framework/Headers',
+                    'System/Library/Frameworks/ApplicationServices.framework/Headers',
+                    'System/Library/Frameworks/OpenGL.framework/Headers',
+                ],
+                'link_settings': {
+                    'libraries': [
+                        '-framework Carbon',
+                        '-framework CoreFoundation',
+                        '-framework ApplicationServices',
+                        '-framework OpenGL'
+                    ]
+                }
+            }],
+
+            ['OS == "linux"', {
+                'link_settings': {
+                    'libraries': [
+                        '-lpng',
+                        '-lz',
+                        '-lX11',
+                        '-lXtst'
+                    ]
+                },
+
+                'sources': [
+                    'src/xdisplay.c'
+                ]
+            }],
+
+            ["OS=='win'", {
+                'defines': ['IS_WINDOWS']
+            }]
+        ],
+
+        'sources': [
+            'src/robotjs.cc',
+            'src/deadbeef_rand.c',
+            'src/mouse.c',
+            'src/keypress.c',
+            'src/keycode.c',
+            'src/screen.c',
+            'src/screengrab.c',
+            'src/snprintf.c',
+            'src/MMBitmap.c'
+        ]
+    }]
 }
