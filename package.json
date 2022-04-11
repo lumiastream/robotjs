@@ -1,6 +1,6 @@
 {
     "name": "@lumiastream/robotjs",
-    "version": "0.6.1-alpha.1",
+    "version": "0.6.1-alpha.2",
     "description": "Node.js Desktop Automation.",
     "main": "index.js",
     "typings": "index.d.ts",
@@ -15,7 +15,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/octalmage/robotjs.git"
+        "url": "https://github.com/@lumiastream/robotjs.git"
     },
     "keywords": [
         "Automation",

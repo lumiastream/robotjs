@@ -79,7 +79,7 @@ void calculateDeltas(CGEventRef *event, MMSignedPoint point)
 	/**
 	 * The next few lines are a workaround for games not detecting mouse moves.
 	 * See this issue for more information:
-	 * https://github.com/octalmage/robotjs/issues/159
+	 * https://github.com/@lumiastream/robotjs/issues/159
 	 */
 	CGEventRef get = CGEventCreate(NULL);
 	CGPoint mouse = CGEventGetLocation(get);
@@ -267,7 +267,7 @@ void doubleClick(MMMouseButton button)
 void scrollMouse(int x, int y)
 {
 #if defined(IS_WINDOWS)
-	// Fix for #97 https://github.com/octalmage/robotjs/issues/97,
+	// Fix for #97 https://github.com/@lumiastream/robotjs/issues/97,
 	// C89 needs variables declared on top of functions (mouseScrollInput)
 	INPUT mouseScrollInputs[2];
 #endif
